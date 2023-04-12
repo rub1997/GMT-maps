@@ -1,6 +1,6 @@
 This code is created to shot the mexican subduction zone with the principal fracture zones (given in white color) and the convergence velocities obtained by the velocity model of DeMets et al. (2010). 
 The colorbar are outside of -R. 
-The trench and the fracture zones are georeferenced using QGIS and are given below. The names of each txt are described and show in mapa_tectonica.sh and mapa_tectonica.png
+The trench and the fracture zones are georeferenced using QGIS and are given below. The names of each txt are described and show in mapa_tectonica.sh and mapa_tectonica.pdf
 
 DeMets, C., Gordon, R. G., & Argus, D. F. (2010). Geologically current plate motions. Geophysical
 Journal International, 181(1):1–80.
