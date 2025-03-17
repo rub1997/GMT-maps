@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# This script maps the topography and bathymetry of a region bounded by -R
+# It also maps the GPS velocities within the velo.out file
+# The GPS stations and epicenter are plotted
 
 gmt begin mendocino_1205_2 pdf
     gmt coast -R-127.00/-120.90/38.30/43.00 -JM10i -Dh -W0.1 -Ba -Sgray
