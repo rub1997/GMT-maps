@@ -1,0 +1,29 @@
+#!/usr/bin/env -S bash -e
+# GMT modern mode bash template
+# Date:    2025-09-26T14:50:56
+# User:    rgarciagonzalez
+# grdgradient creates an intensity grid from the global relief and saves it as earth_intens.nc. The grdimage command uses t# his intensity file with the -I option to apply hill-shading to the satellite image. 
+set -e
+export GMT_SESSION_NAME=$$	# Set a unique session name
+gmt set MAP_FRAME_TYPE plain \
+	PS_PAGE_COLOR white \
+	MAP_TICK_PEN_PRIMARY thinner,black \
+	FONT_ANNOT_PRIMARY 12p,20,black
+gmt begin canada_image_S1_no_inset_w png
+	#gmt grdgradient @earth_relief_10m -Gearth_intes.nc -A-45.0 -Nt1+a0
+	gmt grdimage @earth_day_30s -R-74/-68/46/50.5 -B
+	gmt grdimage corr_llS1.grd -R-74/-68/46/50.5 -Ccorr2.cpt -Q
+		#gmt basemap -B -TdjTR+o0.5c+f 
+        gmt basemap -B -LjBR+o0.6c+w100k -F+ghoneydew+p+s
+	echo -71.25 46.86 quebec | gmt plot -Sc0.4c -Gwhite
+	echo -71.25 46.70 Quebec | gmt text -F+f15p,Helvetica,white
+	gmt colorbar -DJRM -Ba0.7 -Ccorr2.cpt
+	lon=$(gmt mapproject -WjCM -o0)
+	lat=$(gmt mapproject -WjCM -o1)
+	#echo "$lon, $lat"
+	#gmt inset begin -DJTL+o-1.3i/-1.0i+w4c
+	#	gmt coast -JG${lon}/${lat}/? -Rd -Ggray -Swhite -Wfaint -B0
+	#	gmt plot tmp_polygon -Wthick,red
+	#gmt inset end
+gmt end show
+
